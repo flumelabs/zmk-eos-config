@@ -1,0 +1,37 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: flumelabs
+      url-base: https://github.com/flumelabs
+    - name: urob
+      url-base: https://github.com/urob
+    - name: badjeff
+      url-base: https://github.com/badjeff
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.3
+      import: app/west.yml
+    - name: zmk-eos-shield
+      remote: flumelabs
+      revision: main
+    - name: zmk-helpers
+      remote: urob
+      revision: main
+    - name: zmk-output-behavior-listener
+      remote: badjeff
+      revision: 92415c7
+    - name: zmk-split-peripheral-output-relay
+      remote: badjeff
+      revision: 014b549
+    - name: zmk-drv2605-driver
+      remote: badjeff
+      revision: 81a386a
+    - name: zmk-rgbled-widget
+      remote: caksoylar
+      revision: main
+  self:
+    path: config
