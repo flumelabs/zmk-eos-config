@@ -3,3 +3,5 @@ include:
     shield: eos_left rgbled_adapter
   - board: seeeduino_xiao_ble
     shield: eos_right rgbled_adapter
+  - board: seeeduino_xiao_ble
+    shield: settings_reset
