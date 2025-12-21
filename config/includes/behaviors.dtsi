@@ -62,7 +62,8 @@ ZMK_HOLD_TAP(as,
     bindings=<&kp>,<&kp>;
 )
 
-#define AS(keycode) &as LS(keycode) keycode
+#define AS_1(keycode) &as LS(keycode) keycode
+#define AS_2(keycode1, keycode2) &as keycode2 keycode1
 /* ------------- */
 
 /* Haptic Feedback */
