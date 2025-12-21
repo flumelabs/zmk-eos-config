@@ -36,25 +36,6 @@ ZMK_TAP_DANCE(
 )
 /* ----------- */
 
-/* One-Shot Mods */
-ZMK_STICKY_KEY(osm_sk,
-    release-after-ms=<3000>;
-    bindings=<&kp>;
-    quick-release;
-    lazy;
-    ignore-modifiers;
-)
-
-ZMK_HOLD_TAP(osm,
-    flavor="balanced";
-    tapping-term-ms=<280>;
-    bindings=<&kp>,<&osm_sk>;
-    hold-while-undecided-linger;
-)
-
-#define OSM(keycode) &osm keycode keycode
-/* ------------- */
-
 /* Auto Shift */
 ZMK_HOLD_TAP(as,
     flavor="tap-preferred";
@@ -85,6 +66,16 @@ ZMK_HOLD_TAP(as,
         all-state;                                           \
     };
 
+#define OUTPUT_SOURCE_POSITION_STATE_CHANGE 2
+#define HAPTIC_POSITION(node_name, pos_list, bindings_list, layers_list) \
+    node_name: node_name {                                               \
+        compatible = "zmk,output-behavior-listener";                     \
+        bindings = bindings_list;                                        \
+        position = pos_list;                                             \
+        layers = layers_list;                                            \
+        sources = <OUTPUT_SOURCE_POSITION_STATE_CHANGE>;                 \
+    };
+
 #define OUTPUT_SOURCE_KEYCODE_STATE_CHANGE 3
 #define HAPTIC_KEYCODE(node_name, keycode, bindings_list, layers_list) \
     node_name: node_name {                                             \
@@ -103,37 +94,21 @@ ZMK_HOLD_TAP(as,
 };
 /* ----------- */
 
-/*
-Haptic One-Shot Mods
+/* One-Shot Mods */
+ZMK_STICKY_KEY(osm_sk,
+    release-after-ms=<3000>;
+    bindings=<&kp>;
+    quick-release;
+    lazy;
+    ignore-modifiers;
+)
 
-1) Define dead key: #define MY_KEY DEAD_KEY(unique_index)
-2) Instantiate HAPTIC_OSM with dead key.
-3) Add HAPTIC_KEYCODE listener for the dead key.
-4) Use OSML(MOD) / OSMR(MOD) in keymap bindings.
-*/
+ZMK_HOLD_TAP(osm,
+    flavor="balanced";
+    tapping-term-ms=<280>;
+    bindings=<&kp>,<&osm_sk>;
+    hold-while-undecided-linger;
+)
 
-#define HAPTIC_OSM(name, dead_key) \
-    ZMK_MACRO_ONE_PARAM(name##_tap,                                                 \
-        bindings=<&kp dead_key>,<&macro_param_1to1>,<&osm_sk MACRO_PLACEHOLDER>;    \
-    )                                                                               \
-    ZMK_HOLD_TAP(name,                                                              \
-        flavor="balanced";                                                          \
-        tapping-term-ms=<280>;                                                      \
-        bindings=<&kp>,<&name##_tap>;                                               \
-        hold-while-undecided-linger;                                                \
-    )
-
-#define HAPTIC_OSML_KEY DEAD_KEY(0)
-#define HAPTIC_OSMR_KEY DEAD_KEY(1)
-
-HAPTIC_OSM(osml, HAPTIC_OSML_KEY)
-HAPTIC_OSM(osmr, HAPTIC_OSMR_KEY)
-
-/ {
-    HAPTIC_KEYCODE(haptic_osml, <HAPTIC_OSML_KEY>, <&haptic_click_l>, <ALL>)
-    HAPTIC_KEYCODE(haptic_osmr, <HAPTIC_OSMR_KEY>, <&haptic_click_r>, <ALL>)
-};
-
-#define OSML(keycode) &osml keycode keycode
-#define OSMR(keycode) &osmr keycode keycode
+#define OSM(keycode) &osm keycode keycode
 /* ----------- */
