@@ -112,3 +112,24 @@ ZMK_HOLD_TAP(osm,
 
 #define OSM(keycode) &osm keycode keycode
 /* ----------- */
+
+/* Jump Cusor */
+// To end of next word
+ZMK_MACRO(jump_nxt, bindings=<&macro_tap &kp LA(RIGHT)>;)
+// To end of current word
+ZMK_MACRO(jump_end, bindings=<&macro_tap &kp LA(LEFT) &kp LA(RIGHT)>;)
+// To beg of next word
+ZMK_MACRO(jump_prv, bindings=<&macro_tap &kp LA(LEFT)>;)
+// To beg of current word
+ZMK_MACRO(jump_bgn, bindings=<&macro_tap &kp LA(RIGHT) &kp LA(LEFT)>;)
+/* ----------- */
+
+/* Select Word */
+// Jumps to the beginning of the current word and selects to the right of the cursor.
+ZMK_MACRO(_sel_nxt, bindings=<&macro_tap &kp LS(LA(RIGHT))>;)
+ZMK_TRI_STATE(sel_nxt, bindings=<&jump_bgn>,<&_sel_nxt>,<&none>;)
+
+// Jump to the end of the current word and selects to the left of the cursor.
+ZMK_MACRO(_sel_prv, bindings=<&macro_tap &kp LS(LA(LEFT))>;)
+ZMK_TRI_STATE(sel_prv, bindings=<&jump_end>,<&_sel_prv>,<&none>;)
+/* ----------- */
