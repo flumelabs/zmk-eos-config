@@ -28,13 +28,16 @@ ZMK_HOLD_TAP(hmr,
 #define HMR(mod_key, alpha_key) &hmr mod_key alpha_key // HRM Right Hand
 /* ------------- */
 
-/* BT Device Chooser */
+/* BT Controls */
+#define BT0 &bt BT_SEL 0
+#define BT1 &bt BT_SEL 1
+#define BT2 &bt BT_SEL 2
 ZMK_TAP_DANCE(
-    bt_sel,
-    tapping-term-ms=<200>;
-    bindings=<&bt BT_SEL 0>,<&bt BT_SEL 1>,<&bt BT_SEL 2>;
+    bt_clr,
+    tapping-term-ms=<250>;
+    bindings=<&none>,<&bt BT_CLR>;
 )
-/* ----------- */
+/* ------------- */
 
 /* Auto Shift */
 ZMK_HOLD_TAP(as,
@@ -115,21 +118,21 @@ ZMK_HOLD_TAP(osm,
 
 /* Jump Cusor */
 // To end of next word
-ZMK_MACRO(jump_nxt, bindings=<&macro_tap &kp LA(RIGHT)>;)
+ZMK_MACRO(j_nxt, bindings=<&macro_tap &kp LA(RIGHT)>;)
 // To end of current word
-ZMK_MACRO(jump_end, bindings=<&macro_tap &kp LA(LEFT) &kp LA(RIGHT)>;)
+ZMK_MACRO(j_end, bindings=<&macro_tap &kp LA(LEFT) &kp LA(RIGHT)>;)
 // To beg of next word
-ZMK_MACRO(jump_prv, bindings=<&macro_tap &kp LA(LEFT)>;)
+ZMK_MACRO(j_prv, bindings=<&macro_tap &kp LA(LEFT)>;)
 // To beg of current word
-ZMK_MACRO(jump_bgn, bindings=<&macro_tap &kp LA(RIGHT) &kp LA(LEFT)>;)
+ZMK_MACRO(j_bgn, bindings=<&macro_tap &kp LA(RIGHT) &kp LA(LEFT)>;)
 /* ----------- */
 
 /* Select Word */
 // Jumps to the beginning of the current word and selects to the right of the cursor.
-ZMK_MACRO(_sel_nxt, bindings=<&macro_tap &kp LS(LA(RIGHT))>;)
-ZMK_TRI_STATE(sel_nxt, bindings=<&jump_bgn>,<&_sel_nxt>,<&none>;)
+ZMK_MACRO(_s_nxt, bindings=<&macro_tap &kp LS(LA(RIGHT))>;)
+ZMK_TRI_STATE(s_nxt, bindings=<&j_bgn>,<&_s_nxt>,<&none>;)
 
 // Jump to the end of the current word and selects to the left of the cursor.
-ZMK_MACRO(_sel_prv, bindings=<&macro_tap &kp LS(LA(LEFT))>;)
-ZMK_TRI_STATE(sel_prv, bindings=<&jump_end>,<&_sel_prv>,<&none>;)
+ZMK_MACRO(_s_prv, bindings=<&macro_tap &kp LS(LA(LEFT))>;)
+ZMK_TRI_STATE(s_prv, bindings=<&j_end>,<&_s_prv>,<&none>;)
 /* ----------- */
