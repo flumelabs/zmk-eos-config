@@ -34,14 +34,14 @@
     HAPTIC_KEYCODE(haptic_rshft, <0xE5>, <&haptic_click_r>, <ALP>)
 
     /* OSM position-based haptic */
-    HAPTIC_POSITION(haptic_osm_lm4, <LM4>, <&haptic_click_l>, <SYM NUM>)
-    HAPTIC_POSITION(haptic_osm_lm3, <LM3>, <&haptic_click_l>, <SYM NUM>)
-    HAPTIC_POSITION(haptic_osm_lm2, <LM2>, <&haptic_click_l>, <SYM NUM>)
-    HAPTIC_POSITION(haptic_osm_lm1, <LM1>, <&haptic_click_l>, <SYM NUM>)
-    HAPTIC_POSITION(haptic_osm_rm1, <RM1>, <&haptic_click_r>, <NAV SYS>)
-    HAPTIC_POSITION(haptic_osm_rm2, <RM2>, <&haptic_click_r>, <NAV SYS>)
-    HAPTIC_POSITION(haptic_osm_rm3, <RM3>, <&haptic_click_r>, <NAV SYS>)
-    HAPTIC_POSITION(haptic_osm_rm4, <RM4>, <&haptic_click_r>, <NAV SYS>)
+    HAPTIC_POSITION(haptic_osm_lm4, <LM4>, <&haptic_click_l>, <NUM NAV>)
+    HAPTIC_POSITION(haptic_osm_lm3, <LM3>, <&haptic_click_l>, <NUM NAV>)
+    HAPTIC_POSITION(haptic_osm_lm2, <LM2>, <&haptic_click_l>, <NUM NAV>)
+    HAPTIC_POSITION(haptic_osm_lm1, <LM1>, <&haptic_click_l>, <NUM NAV>)
+    HAPTIC_POSITION(haptic_osm_rm1, <RM1>, <&haptic_click_r>, <SYM SYS>)
+    HAPTIC_POSITION(haptic_osm_rm2, <RM2>, <&haptic_click_r>, <SYM SYS>)
+    HAPTIC_POSITION(haptic_osm_rm3, <RM3>, <&haptic_click_r>, <SYM SYS>)
+    HAPTIC_POSITION(haptic_osm_rm4, <RM4>, <&haptic_click_r>, <SYM SYS>)
 };
 /* ----------- */
 
