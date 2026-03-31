@@ -34,14 +34,14 @@
     HAPTIC_KEYCODE(haptic_rshft, <0xE5>, <&haptic_click_r>, <ALP>)
 
     /* OSM position-based haptic */
-    HAPTIC_POSITION(haptic_osm_lm4, <LM4>, <&haptic_click_l>, <NUM NAV>)
-    HAPTIC_POSITION(haptic_osm_lm3, <LM3>, <&haptic_click_l>, <NUM NAV>)
-    HAPTIC_POSITION(haptic_osm_lm2, <LM2>, <&haptic_click_l>, <NUM NAV>)
-    HAPTIC_POSITION(haptic_osm_lm1, <LM1>, <&haptic_click_l>, <NUM NAV>)
-    HAPTIC_POSITION(haptic_osm_rm1, <RM1>, <&haptic_click_r>, <SYM SYS>)
-    HAPTIC_POSITION(haptic_osm_rm2, <RM2>, <&haptic_click_r>, <SYM SYS>)
-    HAPTIC_POSITION(haptic_osm_rm3, <RM3>, <&haptic_click_r>, <SYM SYS>)
-    HAPTIC_POSITION(haptic_osm_rm4, <RM4>, <&haptic_click_r>, <SYM SYS>)
+    HAPTIC_POSITION(haptic_osm_lm4, <LM4>, <&haptic_click_l>, <NUM SYM>)
+    HAPTIC_POSITION(haptic_osm_lm3, <LM3>, <&haptic_click_l>, <NUM SYM>)
+    HAPTIC_POSITION(haptic_osm_lm2, <LM2>, <&haptic_click_l>, <NUM SYM>)
+    HAPTIC_POSITION(haptic_osm_lm1, <LM1>, <&haptic_click_l>, <NUM SYM>)
+    HAPTIC_POSITION(haptic_osm_rm1, <RM1>, <&haptic_click_r>, <NAV SYS>)
+    HAPTIC_POSITION(haptic_osm_rm2, <RM2>, <&haptic_click_r>, <NAV SYS>)
+    HAPTIC_POSITION(haptic_osm_rm3, <RM3>, <&haptic_click_r>, <NAV SYS>)
+    HAPTIC_POSITION(haptic_osm_rm4, <RM4>, <&haptic_click_r>, <NAV SYS>)
 };
 /* ----------- */
 
@@ -53,72 +53,70 @@
 #define GRAVE_TILDE AS_2(GRAVE, TILDE)
 #define MINUS_EQL   AS_2(MINUS, EQUAL)
 #define PLUS_STAR   AS_2(PLUS, STAR)
-#define COMMA_FSLH  AS_2(COMMA, FSLH)
-#define PCT_DLR     AS_2(PRCNT, DLLR)
 #define SQT_DQT     AS_2(SQT, DQT)
 /* ----------- */
 
 ZMK_TRI_STATE(win_swap, bindings=<&kt LGUI>,<&kp TAB>,<&kt LGUI>;)
 ZMK_TRI_STATE(tab_swap, bindings=<&kt LCTRL>,<&kp TAB>,<&kt LCTRL>;)
 
-/* Layers */      
+/* Layers */
 ZMK_LAYER(alph,
 //  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                    &kp X         &kp M         &kp W         &kp Z            SQT_DQT       &kp F         &kp O         &kp U                     
+                    &kp X         &kp M         &kp W         &kp Z            SQT_DQT       &kp F         &kp O         &kp U
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      &kp N         &kp R         &kp T         HML(LSHFT,S)  &kp G            &kp Y         HMR(RSHFT,H)  &kp A         &kp E         &kp I       
+      &kp N         &kp R         &kp T         HML(LSHFT,S)  &kp G            &kp Y         HMR(RSHFT,H)  &kp A         &kp E         &kp I
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
       &kp B         &kp L         &kp D         &lt NUM C     &kp V            &kp K         &lt SYS P     COMMA_SEMI    DOT_COLON     QMARK_EXCL
 //  ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┤─────────────┼─────────────┴─────────────┼─────────────╯
-                                                             &lt NAV SPACE    &lt SYM SPACE 
+                                                             &lt SYM SPACE    &lt NAV SPACE
 //                                                          ╰─────────────╯  ╰─────────────╯
 )
 
 ZMK_LAYER(numb,
 //  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                    ___           ___           ___           ___              PCT_DLR       &kp N7        &kp N8        &kp N9
+                    ___           ___           ___           ___              PLUS_STAR     &kp N7        &kp N8        &kp N9
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      OSM(LSHFT)    OSM(LCTRL)    OSM(LALT)     OSM(LGUI)     ___              MINUS_EQL     &kp N4        &kp N5        &kp N6        PLUS_STAR
+      OSM(LSHFT)    OSM(LCTRL)    OSM(LALT)     OSM(LGUI)     ___              MINUS_EQL     &kp N4        &kp N5        &kp N6        COMMA_SEMI
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      ___           ___           ___           ___           &tog NUM         COMMA_FSLH    &kp N1        &kp N2        &kp N3        DOT_COLON
+      ___           ___           ___           ___           &tog NUM         &kp N0        &kp N1        &kp N2        &kp N3        DOT_COLON
 //  ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┤─────────────┼─────────────┴─────────────┼─────────────╯
-                                                              ___              &kp N0          
+                                                              ___              ___
 //                                                          ╰─────────────╯  ╰─────────────╯
 )
 
 ZMK_LAYER(navi,
 //  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                    ___           ___           ___           ___              &kp ESC       &kp DEL       &kp ENTER     &kp BSPC                 
+                    &kp DEL       &kp ENTER     &kp BSPC      XXX              ___           ___           ___           ___
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      OSM(LSHFT)    OSM(LCTRL)    OSM(LALT)     OSM(LGUI)     ___              &s_prv        &j_prv        &kp UP        &j_nxt        &s_nxt
+      &s_prv        &j_prv        &kp UP        &j_nxt        &s_nxt           ___           OSM(RGUI)     OSM(RALT)     OSM(RCTRL)    OSM(RSHFT)
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      ___           ___           ___           ___           &tog NAV         &kp LG(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT     &kp LG(RIGHT)
+      &kp LG(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT     &kp LG(RIGHT)     &tog NAV      ___           ___           ___           ___
 //  ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┤─────────────┼─────────────┴─────────────┼─────────────╯
-                                                              ___              ___          
+                                                              ___              ___
 //                                                          ╰─────────────╯  ╰─────────────╯
 )
 
 ZMK_LAYER(symb,
 //  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                    &kp PRCNT     &kp PIPE      &kp HASH      AT_AMPS          ___           ___           ___           ___                       
+                    ___           ___           ___           ___              AT_AMPS       &kp HASH      &kp PIPE      &kp PRCNT
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      &kp CARET     &kp PLUS      &kp MINUS     &kp UNDER     &kp DLLR         ___           OSM(RGUI)     OSM(RALT)     OSM(RCTRL)    OSM(RSHFT)  
+      OSM(LSHFT)    OSM(LCTRL)    OSM(LALT)     OSM(LGUI)     ___              &kp CARET     &kp MINUS     &kp EQUAL     GRAVE_TILDE   &kp DLLR
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      &kp LT        &kp STAR      GRAVE_TILDE   &kp EQUAL     &kp GT           &tog SYM      ___           ___           ___           ___         
+      ___           ___           ___           ___           &tog SYM         &kp GT        &kp UNDER     &kp PLUS      &kp STAR      &kp LT
 //  ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┤─────────────┼─────────────┴─────────────┼─────────────╯
-                                                              ___              ___          
+                                                              ___              ___
 //                                                          ╰─────────────╯  ╰─────────────╯
 )
 
 ZMK_LAYER(syst,
 //  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-                    BT0           BT1           BT2           ___              ___           ___           ___           ___                       
+                    BT0           BT1           BT2           ___              ___           ___           ___           ___
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      ___           XXX           XXX           XXX           ___              ___           OSM(RGUI)     OSM(RALT)     OSM(RCTRL)    OSM(RSHFT)  
+      ___           XXX           XXX           XXX           ___              ___           OSM(RGUI)     OSM(RALT)     OSM(RCTRL)    OSM(RSHFT)
 //  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      ___           &out OUT_TOG  XXX           &bt_clr       ___              &tog SYS      ___           ___           ___           ___         
+      ___           &out OUT_TOG  XXX           &bt_clr       ___              &tog SYS      ___           ___           ___           ___
 //  ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤  ├─────────────┤─────────────┼─────────────┴─────────────┼─────────────╯
-                                                              ___              ___          
+                                                              ___              ___
 //                                                          ╰─────────────╯  ╰─────────────╯
 )
 /* ----------- */
